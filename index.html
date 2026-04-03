@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Naivi Craft - هاند ميد بكل حب</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      line-height: 1.7;
+      color: #3e2a1f;
+      background: #f9f5f0;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      background: #fff;
+      padding: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      color: #8d6e63;
+    }
+    nav a {
+      margin: 0 20px;
+      text-decoration: none;
+      color: #555;
+      font-weight: 500;
+      font-size: 17px;
+    }
+    nav a:hover { color: #8d6e63; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(rgba(62,42,31,0.5), rgba(62,42,31,0.5)), url('لوجو.jpeg') center/cover;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+    .hero-content h1 {
+      font-size: 56px;
+      margin-bottom: 15px;
+    }
+    .hero-content p {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+    .btn {
+      background: #8d6e63;
+      color: white;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 50px;
+      font-size: 19px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #6d4c41;
+      transform: scale(1.05);
+    }
+
+    /* Shop */
+    .shop-section {
+      padding: 90px 0;
+      background: #fff;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 38px;
+      color: #8d6e63;
+      margin-bottom: 60px;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      transition: all 0.4s;
+    }
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    }
+    .product-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+    .product-info {
+      padding: 20px;
+      text-align: center;
+    }
+    .product-info h3 {
+      font-size: 21px;
+      margin-bottom: 12px;
+    }
+    .product-info p {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 18px;
+    }
+    .btn-small {
+      background: #8d6e63;
+      color: white;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      width: 90%;
+      max-width: 900px;
+      border-radius: 20px;
+      padding: 25px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+    .close {
+      font-size: 28px;
+      cursor: pointer;
+      color: #999;
+    }
+    .modal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    .modal-item {
+      text-align: center;
+    }
+    .modal-item img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .modal-item p {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    /* Custom Section */
+    .custom-section {
+      padding: 90px 0;
+      background: #e8d5b8;
+      text-align: center;
+    }
+    .custom-section textarea {
+      width: 100%;
+      max-width: 600px;
+      height: 120px;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      margin: 20px 0;
+      font-size: 16px;
+    }
+
+    footer {
+      background: #3e2a1f;
+      color: #ddd;
+      text-align: center;
+      padding: 35px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <div class="logo">Naivi Craft</div>
+      <nav>
+        <a href="#shop">المتجر</a>
+        <a href="#custom">طلب خاص</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>صنع يدوي بكل حب</h1>
+      <p>شموع • ريزن • كونكريت • مكرميه • خشب طبيعي</p>
+      <a href="#shop" class="btn">تسوق الآن</a>
+    </div>
+  </section>
+
+  <!-- Shop Section -->
+  <section id="shop" class="shop-section">
+    <div class="container">
+      <h2 class="section-title">منتجاتنا</h2>
+      <div class="products-grid" id="products-grid"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2 class="section-title">عن Naivi Craft</h2>
+      <p style="max-width: 700px; margin: 0 auto; font-size: 19px;">
+        كل قطعة في Naivi Craft مصنوعة يدويًا بحب وبساطة. 
+        نستخدم خامات طبيعية عشان نوصل لك قطع فريدة تضيف دفء لمنزلك.
+      </p>
+    </div>
+  </section>
+
+  <!-- Custom Order -->
+  <section id="custom" class="custom-section">
+    <div class="container">
+      <h2 class="section-title">طلب خاص</h2>
+      <p style="font-size: 20px; max-width: 600px; margin: 0 auto 30px;">
+        مش لاقي اللي في دماغك؟ اكتب لنا فكرتك ورقمك وهنتواصل معاك
+      </p>
+      <textarea id="custom-message" placeholder="اكتب طلبك هنا (مثال: عايز حاجه ريزن بشكل معين أو لون خاص...)"></textarea>
+      <br>
+      <input type="tel" id="custom-phone" placeholder="رقم الواتساب أو التليفون" style="padding:12px; width:300px; border-radius:30px; border:1px solid #ccc; font-size:16px;">
+      <br><br>
+      <button class="btn" onclick="sendCustomOrder()">أرسل الطلب</button>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title"></h2>
+        <span class="close" onclick="closeModal()">×</span>
+      </div>
+      <div class="modal-grid" id="modal-grid"></div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Vaivi Craft - جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script>
+    // المنتجات الرئيسية (هتعدل الصور والأسماء بعدين)
+    const mainProducts = [
+      { id: 1, title: "Resin Clock", desc: "30 موديل مختلف", category: "resin", img: "ساعه.jpeg" },
+      { id: 2, title: "Resin Medals", desc: "30 موديل", category: "resin", img: "مدليات.jpeg" },
+      { id: 3, title: "  Resin Domino", desc: "30 موديل", category: "resin", img: "دومينو.jpeg" },
+      { id: 4, title: "Resin Chess ♟️", desc: "30 موديل", category: "resin", img: "شطرنج.jpeg" },
+      { id: 5, title: " Resin Coaster ", desc: "30 موديل", category: "resin", img: "كك.jpeg" },
+      { id: 6, title: " Treasured Moments", desc: "30 موديل", category: "resin", img: "ثمينه.jpeg" },
+      { id: 7, title: "BubbleCoaster", desc: "30 موديل", category: "candle", img: "بابلز.jpeg" },
+      { id: 8, title: "RoundCoaster", desc: "30 موديل", category: "concrete", img: "مدور.jpeg" },
+      { id: 9, title: "  OvalCoaster ", desc: "30 موديل", category: "concrete", img: "بيضاوي.jpeg" },
+      { id: 10, title: "SpiralCast", desc: "30 موديل", category: "concrete", img: "قوقعه .jpeg" },
+      { id: 11, title: "ShellCast", desc: "30 موديل", category: "candle", img: "صدفه.jpeg" },
+      { id: 12, title: "CloudCast", desc: "30 موديل", category: "candle", img: "سجابه.jpeg" },
+      { id: 13, title: "StarCast", desc: "30 موديل", category: "macrame", img: "star.jpeg" },
+      { id: 14, title: "Classic Candle", desc: "30 موديل", category: "wood", img: "كلاسيك.jpeg" },
+      { id: 15, title: "Jar Candle", desc: "30 موديل", category: "wood", img: "جارات.jpeg" },
+      { id: 16, title: "Concrete Jar Candle / Resin Jar Candle", desc: "30 موديل", category: "other", img: "جار رك.jpeg" },
+      { id: 17, title: "GrainGlow – Wall Lamp", desc: "30 موديل", category: "resin", img: "ب حيطه.jpeg" },
+      { id: 18, title: "  RootLight – Hanging Lamp", desc: "30 موديل", category: "resin", img: "ستاند.jpeg" },
+      { id: 19, title: "TimberGlow – Desk Lamp", desc: "30 موديل", category: "resin", img: "مكتبي.jpeg" },
+      { id: 20, title: "Arabic Frame", desc: "صمم لك قطعة فريدة", category: "custom", img: "برواز.jpeg" }, 
+      { id: 20, title:"Macrame", desc: "صمم لك قطعة فريدة", category: "custom", img: "مكرميه.jpeg" }, 
+  
+
+    ]; 
+
+    function renderMainProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '';
+
+      mainProducts.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <img src="${product.img}" alt="${product.title}">
+          <div class="product-info">
+            <h3>${product.title}</h3>
+            <p>${product.desc}</p>
+            <button class="btn-small" onclick="showModels(${product.id})">شوف الموديلات (${product.desc.includes('30') ? '30' : ''})</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Modal Functions
+    let currentProduct = null;
+
+    function showModels(id) {
+      currentProduct = mainProducts.find(p => p.id === id);
+      if (!currentProduct) return;
+
+      document.getElementById('modal-title').textContent = currentProduct.title + " - الموديلات";
+      document.getElementById('modal').style.display = 'flex';
+
+      // هنا هتحط الموديلات بعدين (دلوقتي placeholder)
+      const modalGrid = document.getElementById('modal-grid');
+      modalGrid.innerHTML = `
+        <p style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #888;">
+          هنا هتظهر الـ 30 موديل بعد ما تحط الصور والأسماء والأسعار<br><br>
+          <strong>مثال:</strong> موديل 1 - أزرق محيط - 320 جنيه
+        </p>
+      `;
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    function sendCustomOrder() {
+      const message = document.getElementById('custom-message').value;
+      const phone = document.getElementById('custom-phone').value;
+
+      if (!message || !phone) {
+        alert("يرجى كتابة الطلب ورقم التليفون");
+        return;
+      }
+
+      alert(`شكراً يا عبد الرحمن!\nالطلب تم إرساله بنجاح.\nرقمك: ${phone}\nسنتواصل معاك قريبًا على الواتساب.`);
+      document.getElementById('custom-message').value = '';
+      document.getElementById('custom-phone').value = '';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('modal');
+      if (event.target === modal) closeModal();
+    }
+
+    // Initialize
+    window.onload = renderMainProducts;
+  </script>
+</body>
+</html>
